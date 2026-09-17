@@ -39,7 +39,7 @@ int main()
                 break;
 
             case 3:
-                printf("Bed status selected.\n");
+                displayWards();
                 break;
 
             case 4:

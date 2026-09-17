@@ -50,3 +50,34 @@ void displaySpecialties()
     }
 }
 
+void displayWards()
+{
+    const char *wardNames[]=
+    {
+        "General ward",
+        "Paediatric ward",
+        "Surgical ward",
+        "ICU"
+    };
+    const int bedCapacity[]=
+    {
+        20,
+        10,
+        10,
+        05
+    };
+
+    int i;
+    printf("\n");
+    printf("==========================\n");
+    printf("        HOSPITAL WARDS\n");
+    printf("==========================\n");
+
+    for(i=0;i<4;i++)
+    {
+        printf("%d. %s - Beds: %d\n",i+1,wardNames[i],bedCapacity[i]);
+    }
+
+    printf("===========================\n");
+}
+
