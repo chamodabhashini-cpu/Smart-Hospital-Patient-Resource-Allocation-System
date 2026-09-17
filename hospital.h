@@ -3,5 +3,6 @@
 
 void displaySpecialties();
 void displayWards();
+void displayBedStatus();
 
 #endif

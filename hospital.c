@@ -88,3 +88,31 @@ void displayWards()
     printf("===========================\n");
 }
 
+void displayBedStatus()
+{
+    int bedOccupancy[4][20] = {0};
+    int i,j;
+
+    printf("\n");
+    printf("=============================\n");
+    printf("           HOSPITAL BED STATUS\n");
+    printf("==============================\n");
+
+    for(i=0;i<4;i++)
+    {
+        printf("\nWard %d:\n", i+1);
+         for(j=0;j<20;j++)
+         {
+             if(bedOccupancy[i][j]==0)
+             {
+                 printf("Bed %02d :Available\n",j+1);
+             }
+             else
+             {
+                 printf("Bed %02d :Occupied\n",j+1);
+             }
+         }
+         printf("---------------------------------\n");
+    }
+}
+

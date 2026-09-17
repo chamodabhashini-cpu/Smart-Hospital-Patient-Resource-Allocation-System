@@ -39,7 +39,7 @@ int main()
                 break;
 
             case 3:
-                displayWards();
+                displayBedStatus();
                 break;
 
             case 4:
