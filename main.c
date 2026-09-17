@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "hospital.h"
 
 void displayMenu()
 {
@@ -30,7 +31,7 @@ int main()
             switch (choice)
             {
             case 1:
-                printf("Patient registration selected.\n");
+                displaySpecialties();
                 break;
 
             case 2:
