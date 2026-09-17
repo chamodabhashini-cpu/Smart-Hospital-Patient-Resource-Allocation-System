@@ -66,6 +66,13 @@ void displayWards()
         10,
         05
     };
+    const float wardDailyRates[]=
+    {
+        3000.00,
+        6000.00,
+        12000.00,
+        25000.00
+    };
 
     int i;
     printf("\n");
@@ -75,7 +82,7 @@ void displayWards()
 
     for(i=0;i<4;i++)
     {
-        printf("%d. %s - Beds: %d\n",i+1,wardNames[i],bedCapacity[i]);
+        printf("%d. %s - Beds: %d - Daily rate: LKR %.2f\n",i+1,wardNames[i],bedCapacity[i],wardDailyRates[i]);
     }
 
     printf("===========================\n");
