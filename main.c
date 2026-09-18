@@ -35,7 +35,7 @@ int main()
                 break;
 
             case 2:
-                printf("Patient bill selected.\n");
+                displayPatients();
                 break;
 
             case 3:

@@ -1,6 +1,20 @@
 #include<stdio.h>
 #include "hospital.h"
 
+#define MAX_PATIENTS 100
+
+char patientNames[MAX_PATIENTS][100];
+int patientAges[MAX_PATIENTS];
+int patientUrgency[MAX_PATIENTS];
+int patientSpecialty[MAX_PATIENTS];
+int patientAdmitted[MAX_PATIENTS];
+int patientWard[MAX_PATIENTS];
+int patientDays[MAX_PATIENTS];
+
+int patientCount = 0;
+
+
+
 const char *specialtyNames[]=
 {
     "General practice(OPD)",
@@ -132,17 +146,17 @@ void registerPatient()
     printf("=======================================\n");
 
     printf("Enter patient name: ");
-    scanf("%[^\n]",patientName);
+    scanf(" %[^\n]",patientName);
 
     printf("Enter patient age: ");
-    scanf("%d",&age);
+    scanf("%d",&patientAges[patientCount]);
 
     printf("\nUrgency Level:\n");
     printf("1. Urgent\n");
     printf("2. Normal\n");
     printf("3. Critical\n");
     printf("Enter emergency level:");
-    scanf("%d",&urgencyLevel);
+    scanf("%d",&patientUrgency[patientCount]);
 
     printf("\nSpecialty:\n");
     printf("1. General practice(OPD)\n");
@@ -150,27 +164,27 @@ void registerPatient()
     printf("3. Cardiology\n");
     printf("4. Neurology\n");
     printf("Enter specialty ID:");
-    scanf("%d",&specialtyID);
+    scanf("%d",&patientSpecialty[patientCount]);
 
     printf("\nIs admitted to ward?\n");
     printf("1=yes\n");
     printf("0=No\n");
     printf("Enter choice:");
-    printf("%d",&isAdmitted);
+    printf("%d",&patientAdmitted[patientCount]);
 
     if(isAdmitted==1)
     {
         printf("Enter ward ID(1-4): ");
-        scanf("%d",&wardID);
+        scanf("%d",&patientWard[patientCount]);
 
         printf("Enter number of days admitted: ");
-        scanf("%d",&daysAdmitted);
+        scanf("%d",&patientDays[patientCount]);
 
     }
     else
     {
-        wardID =0;
-        daysAdmitted =0;
+        patientWard[patientCount] =0;
+        patientDays[patientCount] =0;
 
     }
 
@@ -193,6 +207,44 @@ void registerPatient()
         printf("Status       : Outpatient/OPD\n");
     }
     printf("========================================\n");
+    patientCount++;
 
+}
+void displayPatients()
+{
+    int i;
+
+    printf("\n");
+    printf("\n========================================\n");
+    printf("            REGISTERED PATIENTS\n");
+    printf("==========================================\n");
+
+    if (patientCount == 0)
+    {
+        printf("No patients registered.\n");
+    }
+    else
+    {
+        for (i = 0; i < patientCount; i++)
+        {
+            printf("\nPatient %d\n", i + 1);
+            printf("Name          : %s\n", patientNames[i]);
+            printf("Age           : %d\n", patientAges[i]);
+            printf("Urgency Level : %d\n", patientUrgency[i]);
+            printf("Specialty ID  : %d\n", patientSpecialty[i]);
+
+            if (patientAdmitted[i] == 1)
+            {
+                printf("Ward ID       : %d\n", patientWard[i]);
+                printf("Days Admitted : %d\n", patientDays[i]);
+            }
+            else
+            {
+                printf("Status        : Outpatient / OPD\n");
+            }
+        }
+    }
+
+    printf("\n============================================\n");
 }
 
