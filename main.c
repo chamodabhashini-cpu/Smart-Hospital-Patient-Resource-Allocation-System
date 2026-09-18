@@ -31,7 +31,7 @@ int main()
             switch (choice)
             {
             case 1:
-                displaySpecialties();
+                registerPatient();
                 break;
 
             case 2:

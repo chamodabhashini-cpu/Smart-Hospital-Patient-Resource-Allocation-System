@@ -116,3 +116,83 @@ void displayBedStatus()
     }
 }
 
+void registerPatient()
+{
+    char patientName[100];
+    int age;
+    int urgencyLevel;
+    int specialtyID;
+    int isAdmitted;
+    int wardID;
+    int daysAdmitted;
+
+    printf("\n");
+    printf("=======================================\n");
+    printf("       PATIENT REGISTRATION\n");
+    printf("=======================================\n");
+
+    printf("Enter patient name: ");
+    scanf("%[^\n]",patientName);
+
+    printf("Enter patient age: ");
+    scanf("%d",&age);
+
+    printf("\nUrgency Level:\n");
+    printf("1. Urgent\n");
+    printf("2. Normal\n");
+    printf("3. Critical\n");
+    printf("Enter emergency level:");
+    scanf("%d",&urgencyLevel);
+
+    printf("\nSpecialty:\n");
+    printf("1. General practice(OPD)\n");
+    printf("2. Paediatrics\n");
+    printf("3. Cardiology\n");
+    printf("4. Neurology\n");
+    printf("Enter specialty ID:");
+    scanf("%d",&specialtyID);
+
+    printf("\nIs admitted to ward?\n");
+    printf("1=yes\n");
+    printf("0=No\n");
+    printf("Enter choice:");
+    printf("%d",&isAdmitted);
+
+    if(isAdmitted==1)
+    {
+        printf("Enter ward ID(1-4): ");
+        scanf("%d",&wardID);
+
+        printf("Enter number of days admitted: ");
+        scanf("%d",&daysAdmitted);
+
+    }
+    else
+    {
+        wardID =0;
+        daysAdmitted =0;
+
+    }
+
+    printf("\n========================================\n");
+    printf("            PATIENT REGISTRATION COMPLETE\n");
+    printf("==========================================\n");
+
+    printf("Patient Name    :%s\n",patientName);
+    printf("Age             :%s\n",age);
+    printf("Urgency level   :%s\n",urgencyLevel);
+    printf("Specialty ID    :%s\n",specialtyID);
+
+    if(isAdmitted==1)
+    {
+        printf("Ward ID       :%d\n",wardID);
+        printf("Days Admitted :%d\n",daysAdmitted);
+    }
+    else
+    {
+        printf("Status       : Outpatient/OPD\n");
+    }
+    printf("========================================\n");
+
+}
+

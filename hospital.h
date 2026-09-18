@@ -4,5 +4,6 @@
 void displaySpecialties();
 void displayWards();
 void displayBedStatus();
+void registerPatient();
 
 #endif
