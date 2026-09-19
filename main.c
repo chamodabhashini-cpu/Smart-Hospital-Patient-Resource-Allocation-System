@@ -43,11 +43,11 @@ int main()
                 break;
 
             case 4:
-                printf("Patient priority selected.\n");
+                displayPatientsByPriority();
                 break;
 
             case 5:
-                printf("Reports selected.\n");
+                printf("Generate reports selected.\n");
                 break;
 
             case 6:

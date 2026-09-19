@@ -356,3 +356,49 @@ double calculateFinalPayable(double grossTotal,double discount)
 {
     return grossTotal-discount;
 }
+void displayPatientsByPriority(void)
+{
+    int i,j,temp;
+    int highestPriority;
+    int order [MAX_PATIENTS];
+
+    for(i=0;i<patientCount;i++)
+    {
+        order[i]=i;
+    }
+
+    for(i=0;i<patientCount-1;i++)
+    {
+        highestPriority=i;
+        for(j=i+1;j<patientCount;j++)
+        {
+         if(patientUrgency[order[j]]>patientUrgency[order[highestPriority]])
+        {
+            highestPriority=j;
+        }
+        }
+
+    temp=order[i];
+    order[i]=order[highestPriority];
+    order[highestPriority]=temp;
+    }
+
+    printf("\n");
+    printf("=======================================\n");
+    printf("        PATIENTS BY PRIORITY\n");
+    printf("=======================================\n");
+
+    for(i=0;i<patientCount;i++)
+    {
+       int index=order[i];
+       printf("\nPatient%d\n",i+1);
+       printf("Name          : %s\n", patientNames[index]);
+        printf("Age           : %d\n", patientAges[index]);
+        printf("Urgency Level : %d\n", patientUrgency[index]);
+        printf("Specialty ID  : %d\n", patientSpecialty[index]);
+        printf("Waiting Time : %.2f mins\n",patientWaitingTime[index]);
+
+    }
+    printf("======================================\n");
+
+}
