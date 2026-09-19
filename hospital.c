@@ -13,6 +13,9 @@ int patientDays[MAX_PATIENTS];
 double patientWaitingTime[MAX_PATIENTS];
 double patientSurcharge[MAX_PATIENTS];
 double patientWardCost[MAX_PATIENTS];
+double patientGrossTotal[MAX_PATIENTS];
+double patientDiscount[MAX_PATIENTS];
+double patientFinalPayable[MAX_PATIENTS];
 
 int patientCount = 0;
 
@@ -201,6 +204,9 @@ void registerPatient()
         patientWardCost[patientCount] =0;
 
     }
+    patientGrossTotal[patientCount]=calculateGrossTotal(specialtyFees[patientSpecialty[patientCount]-1],patientSurcharge[patientCount],patientWardCost[patientCount]);
+    patientDiscount[patientCount]=calculateAgeDiscount(patientAges[patientCount],patientGrossTotal[patientCount]);
+    patientFinalPayable[patientCount]=calculateFinalPayable(patientGrossTotal[patientCount],patientDiscount[patientCount]);
 
     printf("\n========================================\n");
     printf("        PATIENT REGISTRATION COMPLETE\n");
@@ -217,6 +223,10 @@ void registerPatient()
 
     printf("Ward stay cost: LKR%.2f\n",patientWardCost[patientCount]);
 
+    printf("============================================\n");
+    printf("Gross Total Bill    :LKR%.2f\n",patientGrossTotal[patientCount]);
+    printf("Age subsidy discount:LKR-%.2f\n",patientDiscount[patientCount]);
+    printf("Final amount payable:LKR%.2f\n",patientFinalPayable[patientCount]);
 
     if (patientAdmitted[patientCount] == 1)
     {
@@ -323,4 +333,26 @@ double calculateWardStayCost(int wardID,int daysAdmitted)
         return 0;
     }
     return wardDailyRates[wardID -1]*daysAdmitted;
+}
+
+double calculateGrossTotal(double baseFee,double surCharge,double wardCost)
+{
+    return baseFee+surCharge+wardCost;
+}
+
+double calculateAgeDiscount(int age,double grossTotal)
+{
+    if(age<5 || age>65)
+    {
+        return grossTotal*0.15;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+double calculateFinalPayable(double grossTotal,double discount)
+{
+    return grossTotal-discount;
 }
