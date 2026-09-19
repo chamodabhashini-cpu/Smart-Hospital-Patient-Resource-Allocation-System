@@ -11,6 +11,7 @@ int patientAdmitted[MAX_PATIENTS];
 int patientWard[MAX_PATIENTS];
 int patientDays[MAX_PATIENTS];
 double patientWaitingTime[MAX_PATIENTS];
+double patientSurcharge[MAX_PATIENTS];
 
 int patientCount = 0;
 
@@ -160,6 +161,7 @@ void registerPatient()
     printf("Enter emergency level:");
     scanf("%d",&patientUrgency[patientCount]);
 
+
     printf("\nSpecialty:\n");
     printf("1. General practice(OPD)\n");
     printf("2. Paediatrics\n");
@@ -167,6 +169,9 @@ void registerPatient()
     printf("4. Neurology\n");
     printf("Enter specialty ID:");
     scanf("%d",&patientSpecialty[patientCount]);
+
+    patientSurcharge[patientCount]=calculateEmergencySurcharge(patientUrgency[patientCount],specialtyFees[patientSpecialty[patientCount]-1]);
+
 
     patientWaitingTime[patientCount] = calculateWaitingTime(patientSpecialty[patientCount]);
     specialtyQueue[patientSpecialty[patientCount] - 1]++;
@@ -201,6 +206,8 @@ void registerPatient()
     printf("Age             : %d\n", patientAges[patientCount]);
     printf("Urgency Level   : %d\n", patientUrgency[patientCount]);
     printf("Specialty ID    : %d\n", patientSpecialty[patientCount]);
+
+    printf("Emergency Surcharge: LKR%.2f\n",patientSurcharge[patientCount]);
 
     printf("Estimated Waiting Time : %.2f mins\n",
            patientWaitingTime[patientCount]);
@@ -284,4 +291,22 @@ double calculateWaitingTime(int specialtyID)
     }
     return specialtyQueue[specialtyID -1]*averageTime;
 }
-
+double calculateEmergencySurcharge(int urgencyLevel,double baseFee)
+{
+    if(urgencyLevel==1)
+    {
+        return 0;
+    }
+    else if (urgencyLevel==2)
+    {
+        return baseFee*0.20;
+    }
+    else if(urgencyLevel==3)
+    {
+        return baseFee*0.50;
+    }
+    else
+    {
+        return 0;
+    }
+}

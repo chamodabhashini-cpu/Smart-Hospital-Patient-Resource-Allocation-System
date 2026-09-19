@@ -8,5 +8,6 @@ void registerPatient();
 void displayPatients();
 
 double calculateWaitingTime(int specialtyID);
+double calculateEmergencySurcharge(int urgencyLevel,double baseFee);
 
 #endif
