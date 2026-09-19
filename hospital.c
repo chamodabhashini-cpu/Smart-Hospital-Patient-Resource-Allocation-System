@@ -12,6 +12,7 @@ int patientWard[MAX_PATIENTS];
 int patientDays[MAX_PATIENTS];
 double patientWaitingTime[MAX_PATIENTS];
 double patientSurcharge[MAX_PATIENTS];
+double patientWardCost[MAX_PATIENTS];
 
 int patientCount = 0;
 
@@ -66,7 +67,13 @@ void displaySpecialties()
 
     }
 }
-
+const float wardDailyRates[]=
+    {
+        3000.00,
+        6000.00,
+        12000.00,
+        25000.00
+    };
 void displayWards()
 {
     const char *wardNames[]=
@@ -83,13 +90,7 @@ void displayWards()
         10,
         05
     };
-    const float wardDailyRates[]=
-    {
-        3000.00,
-        6000.00,
-        12000.00,
-        25000.00
-    };
+
 
     int i;
     printf("\n");
@@ -190,11 +191,14 @@ void registerPatient()
         printf("Enter number of days admitted: ");
         scanf("%d",&patientDays[patientCount]);
 
+        patientWardCost[patientCount]=calculateWardStayCost(patientWard[patientCount],patientDays[patientCount]);
+
     }
     else
     {
         patientWard[patientCount] =0;
         patientDays[patientCount] =0;
+        patientWardCost[patientCount] =0;
 
     }
 
@@ -209,8 +213,10 @@ void registerPatient()
 
     printf("Emergency Surcharge: LKR%.2f\n",patientSurcharge[patientCount]);
 
-    printf("Estimated Waiting Time : %.2f mins\n",
-           patientWaitingTime[patientCount]);
+    printf("Estimated Waiting Time : %.2f mins\n",patientWaitingTime[patientCount]);
+
+    printf("Ward stay cost: LKR%.2f\n",patientWardCost[patientCount]);
+
 
     if (patientAdmitted[patientCount] == 1)
     {
@@ -309,4 +315,12 @@ double calculateEmergencySurcharge(int urgencyLevel,double baseFee)
     {
         return 0;
     }
+}
+double calculateWardStayCost(int wardID,int daysAdmitted)
+{
+    if(wardID<1||wardID>4||daysAdmitted<=0)
+    {
+        return 0;
+    }
+    return wardDailyRates[wardID -1]*daysAdmitted;
 }
