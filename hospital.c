@@ -10,9 +10,11 @@ int patientSpecialty[MAX_PATIENTS];
 int patientAdmitted[MAX_PATIENTS];
 int patientWard[MAX_PATIENTS];
 int patientDays[MAX_PATIENTS];
+double patientWaitingTime[MAX_PATIENTS];
 
 int patientCount = 0;
 
+int specialtyQueue[4]={0,0,0,0};
 
 
 const char *specialtyNames[]=
@@ -166,13 +168,16 @@ void registerPatient()
     printf("Enter specialty ID:");
     scanf("%d",&patientSpecialty[patientCount]);
 
+    patientWaitingTime[patientCount] = calculateWaitingTime(patientSpecialty[patientCount]);
+    specialtyQueue[patientSpecialty[patientCount] - 1]++;
+
     printf("\nIs admitted to ward?\n");
     printf("1=yes\n");
     printf("0=No\n");
     printf("Enter choice:");
-    printf("%d",&patientAdmitted[patientCount]);
+    scanf("%d",&patientAdmitted[patientCount]);
 
-    if(isAdmitted==1)
+    if(patientAdmitted[patientCount]==1)
     {
         printf("Enter ward ID(1-4): ");
         scanf("%d",&patientWard[patientCount]);
@@ -189,26 +194,30 @@ void registerPatient()
     }
 
     printf("\n========================================\n");
-    printf("            PATIENT REGISTRATION COMPLETE\n");
-    printf("==========================================\n");
+    printf("        PATIENT REGISTRATION COMPLETE\n");
+    printf("========================================\n");
 
-    printf("Patient Name    :%s\n",patientName);
-    printf("Age             :%s\n",age);
-    printf("Urgency level   :%s\n",urgencyLevel);
-    printf("Specialty ID    :%s\n",specialtyID);
+    printf("Patient Name    : %s\n", patientName);
+    printf("Age             : %d\n", patientAges[patientCount]);
+    printf("Urgency Level   : %d\n", patientUrgency[patientCount]);
+    printf("Specialty ID    : %d\n", patientSpecialty[patientCount]);
 
-    if(isAdmitted==1)
+    printf("Estimated Waiting Time : %.2f mins\n",
+           patientWaitingTime[patientCount]);
+
+    if (patientAdmitted[patientCount] == 1)
     {
-        printf("Ward ID       :%d\n",wardID);
-        printf("Days Admitted :%d\n",daysAdmitted);
+        printf("Ward ID       : %d\n", patientWard[patientCount]);
+        printf("Days Admitted : %d\n", patientDays[patientCount]);
     }
     else
     {
-        printf("Status       : Outpatient/OPD\n");
+        printf("Status        : Outpatient / OPD\n");
     }
-    printf("========================================\n");
-    patientCount++;
 
+    printf("========================================\n");
+
+    patientCount++;
 }
 void displayPatients()
 {
@@ -232,6 +241,7 @@ void displayPatients()
             printf("Age           : %d\n", patientAges[i]);
             printf("Urgency Level : %d\n", patientUrgency[i]);
             printf("Specialty ID  : %d\n", patientSpecialty[i]);
+            printf("Estimated Waiting Time : %.2f mins\n",patientWaitingTime[patientCount]);
 
             if (patientAdmitted[i] == 1)
             {
@@ -246,5 +256,32 @@ void displayPatients()
     }
 
     printf("\n============================================\n");
+}
+
+double calculateWaitingTime(int specialtyID)
+{
+    int averageTime;
+
+    if(specialtyID==1)
+    {
+        averageTime = 15;
+    }
+    else if(specialtyID==2)
+    {
+        averageTime = 20;
+    }
+    else if(specialtyID==3)
+    {
+        averageTime = 30;
+    }
+    else if(specialtyID==4)
+    {
+        averageTime = 30;
+    }
+    else
+    {
+        return 0;
+    }
+    return specialtyQueue[specialtyID -1]*averageTime;
 }
 

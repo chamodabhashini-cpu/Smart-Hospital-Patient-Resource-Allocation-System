@@ -7,4 +7,6 @@ void displayBedStatus();
 void registerPatient();
 void displayPatients();
 
+double calculateWaitingTime(int specialtyID);
+
 #endif
