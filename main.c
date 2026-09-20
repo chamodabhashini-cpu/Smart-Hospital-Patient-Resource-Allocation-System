@@ -47,7 +47,7 @@ int main()
                 break;
 
             case 5:
-                printf("Generate reports selected.\n");
+                generateReports();
                 break;
 
             case 6:

@@ -462,3 +462,87 @@ void displayPatientBill(void)
          printf("=============================================\n");
     }
 }
+void generateReports(void)
+{
+    int i;
+    int urgentCount =0;
+    int normalCount =0;
+    int criticalCount =0;
+
+    double totalRevenue =0;
+    double totalDiscount =0;
+
+    int wardCapacity[4] ={20,10,10,5};
+    int occupiedBeds[4] ={0,0,0,0};
+
+    int highestPatient =-1;
+    double highestBill =0;
+
+    for(i=0;i<patientCount;i++)
+    {
+        if(patientUrgency[i]==1)
+        {
+            urgentCount++;
+        }
+        else if(patientUrgency[i]==2)
+        {
+            normalCount++;
+        }
+        else if(patientUrgency[i]==3)
+        {
+            criticalCount++;
+        }
+        totalRevenue+=patientFinalPayable[i];
+        totalDiscount+=patientDiscount[i];
+        if(patientAdmitted[i]==1)
+        {
+            if(patientWard[i]>=1 && patientWard[i]<=4)
+            {
+                occupiedBeds[patientWard[i]-1]++;
+            }
+        }
+        if(highestPatient ==-1 ||patientFinalPayable[i]>highestBill)
+        {
+            highestBill =patientFinalPayable[i];
+            highestPatient=i;
+        }
+    }
+    printf("\n");
+    printf("====================================================\n");
+    printf("          SMART HOSPITAL PERFORMANCE REPORT\n");
+    printf("====================================================\n");
+
+    printf("\n1. PATIENT SUMMARY\n");
+    printf("----------------------------------------------------\n");
+    printf("Total Patients Registered : %d\n", patientCount);
+    printf("Urgent Patients           : %d\n", urgentCount);
+    printf("Normal Patients           : %d\n", normalCount);
+    printf("Critical Patients         : %d\n", criticalCount);
+
+    printf("\n2. FINANCIAL SUMMARY\n");
+    printf("----------------------------------------------------\n");
+    printf("Total Revenue Earned      : LKR %.2f\n", totalRevenue);
+    printf("Total Discounts Granted   : LKR %.2f\n", totalDiscount);
+
+    printf("\n3. BED OCCUPANCY\n");
+    printf("----------------------------------------------------\n");
+
+    for(i=0;i<4;i++)
+    {
+        double occupancyPercentage = ((double)occupiedBeds[i]/wardCapacity[i])*100;
+        printf("Ward %d: %d/%d beds occupied (%.2f%%)\n",i+1,occupiedBeds[i],wardCapacity[i],occupancyPercentage);
+    }
+    printf("\nHIGHEST PAYING PATIENT\n");
+    printf("----------------------------------------------------\n");
+    if(highestPatient==-1)
+    {
+        printf("No patients registered\n");
+
+    }
+    else
+    {
+        printf("Patient name: %s\n",patientNames[highestPatient]);
+        printf("Total bill:   %.2f\n",patientFinalPayable[highestPatient]);
+    }
+     printf("----------------------------------------------------\n");
+}
