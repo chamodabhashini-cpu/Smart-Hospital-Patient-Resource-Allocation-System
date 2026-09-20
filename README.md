@@ -31,10 +31,11 @@ The system allows users to register patients, manage specialties and wards, calc
 
 ## How to Run
 
-1. Open `SmartHospital.cbp` in Code::Blocks.
-2. Build the project.
-3. Run the program.
-4. Select an option from the main menu.
+1.Download zip file and extract the zip file.
+2. Open `SmartHospital.cbp` in Code::Blocks.
+3. Build the project.
+4. Run the program.
+5. Select an option from the main menu.
 
 
 ## Author
