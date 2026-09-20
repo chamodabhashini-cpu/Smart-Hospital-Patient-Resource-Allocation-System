@@ -1,0 +1,2 @@
+Patient:sf |Age:3 |Urgency:2|Specialty:2|Final bill: LKR12750.00
+Patient:seetha |Age:45 |Urgency:2|Specialty:2|Final bill: LKR15000.00

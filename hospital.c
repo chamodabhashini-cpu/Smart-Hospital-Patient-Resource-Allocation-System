@@ -3,6 +3,7 @@
 
 #define MAX_PATIENTS 100
 
+int bedOccupancy[4][20]={0};
 char patientNames[MAX_PATIENTS][100];
 int patientAges[MAX_PATIENTS];
 int patientUrgency[MAX_PATIENTS];
@@ -111,7 +112,7 @@ void displayWards()
 
 void displayBedStatus()
 {
-    int bedOccupancy[4][20] = {0};
+
     int i,j;
 
     printf("\n");
@@ -545,4 +546,43 @@ void generateReports(void)
         printf("Total bill:   %.2f\n",patientFinalPayable[highestPatient]);
     }
      printf("----------------------------------------------------\n");
+}
+void saveData(void)
+{
+    FILE *file;
+    int i;
+
+    file=fopen("C:\\Users\\USER\\Desktop\\Smart hospital\\patient_records.txt","a");
+    if(file==NULL)
+    {
+        printf("Error opening patient_records.txt\n");
+        return;
+    }
+    for(i=0;i<patientCount;i++)
+    {
+        fprintf(file,"Patient:%s |Age:%d |Urgency:%d|"
+                "Specialty:%d|Final bill: LKR%.2f\n",patientNames[i],patientAges[i],patientUrgency[i],patientSpecialty[i],patientFinalPayable[i]);
+    }
+    fclose(file);
+    printf("Patient Records Saved Data Successfully.\n");
+
+    file=fopen("C:\\Users\\USER\\Desktop\\Smart hospital\\beds_status.txt","w");
+    if (file==NULL)
+    {
+        printf("Error opening beds_status.txt\n");
+        return;
+    }
+    fprintf(file,"SMART HOSPITAL BEDS STATUS\n");
+    fprintf(file,"--------------------------\n");
+    int j;
+    for(i=0;i<4;i++)
+    {
+        fprintf(file,"\nWard %d:\n",i+1);
+        for(j=0;j<20;j++)
+        {
+            fprintf(file,"Bed %02d: %s\n",j+1,bedOccupancy[i][j]==0?"Available":"Occupied");
+        }
+    }
+    fclose(file);
+    printf("Bes Status Successfully\n");
 }

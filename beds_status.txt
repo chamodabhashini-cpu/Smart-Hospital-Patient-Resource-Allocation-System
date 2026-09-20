@@ -1,0 +1,90 @@
+SMART HOSPITAL BEDS STATUS
+--------------------------
+
+Ward 1:
+Bed 01: Available
+Bed 02: Available
+Bed 03: Available
+Bed 04: Available
+Bed 05: Available
+Bed 06: Available
+Bed 07: Available
+Bed 08: Available
+Bed 09: Available
+Bed 10: Available
+Bed 11: Available
+Bed 12: Available
+Bed 13: Available
+Bed 14: Available
+Bed 15: Available
+Bed 16: Available
+Bed 17: Available
+Bed 18: Available
+Bed 19: Available
+Bed 20: Available
+
+Ward 2:
+Bed 01: Available
+Bed 02: Available
+Bed 03: Available
+Bed 04: Available
+Bed 05: Available
+Bed 06: Available
+Bed 07: Available
+Bed 08: Available
+Bed 09: Available
+Bed 10: Available
+Bed 11: Available
+Bed 12: Available
+Bed 13: Available
+Bed 14: Available
+Bed 15: Available
+Bed 16: Available
+Bed 17: Available
+Bed 18: Available
+Bed 19: Available
+Bed 20: Available
+
+Ward 3:
+Bed 01: Available
+Bed 02: Available
+Bed 03: Available
+Bed 04: Available
+Bed 05: Available
+Bed 06: Available
+Bed 07: Available
+Bed 08: Available
+Bed 09: Available
+Bed 10: Available
+Bed 11: Available
+Bed 12: Available
+Bed 13: Available
+Bed 14: Available
+Bed 15: Available
+Bed 16: Available
+Bed 17: Available
+Bed 18: Available
+Bed 19: Available
+Bed 20: Available
+
+Ward 4:
+Bed 01: Available
+Bed 02: Available
+Bed 03: Available
+Bed 04: Available
+Bed 05: Available
+Bed 06: Available
+Bed 07: Available
+Bed 08: Available
+Bed 09: Available
+Bed 10: Available
+Bed 11: Available
+Bed 12: Available
+Bed 13: Available
+Bed 14: Available
+Bed 15: Available
+Bed 16: Available
+Bed 17: Available
+Bed 18: Available
+Bed 19: Available
+Bed 20: Available

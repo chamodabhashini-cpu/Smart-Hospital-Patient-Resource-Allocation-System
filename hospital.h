@@ -9,6 +9,7 @@ void displayPatients();
 void displayPatientsByPriority(void);
 void displayPatientBill(void);
 void generateReports(void);
+void saveData(void);
 
 double calculateWaitingTime(int specialtyID);
 double calculateEmergencySurcharge(int urgencyLevel,double baseFee);

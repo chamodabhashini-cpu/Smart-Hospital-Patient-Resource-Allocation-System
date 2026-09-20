@@ -51,7 +51,7 @@ int main()
                 break;
 
             case 6:
-                printf("Save data selected.\n");
+                saveData();
                 break;
 
             case 7:
