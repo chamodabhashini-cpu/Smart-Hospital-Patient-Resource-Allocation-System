@@ -35,7 +35,7 @@ int main()
                 break;
 
             case 2:
-                displayPatients();
+                displayPatientBill();
                 break;
 
             case 3:
